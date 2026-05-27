@@ -1,7 +1,3 @@
 #!/bin/bash
-if [ -d "apps/api" ]; then
-  cd apps/api
-elif [ -d "AIwithAbhi/apps/api" ]; then
-  cd AIwithAbhi/apps/api
-fi
+cd AIwithAbhi/apps/api
 exec uvicorn main:app --host 0.0.0.0 --port $PORT
