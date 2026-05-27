@@ -2,19 +2,18 @@ services:
   - type: web
     name: aiwithabhi-api
     runtime: python
-    rootDir: apps/api
-    buildCommand: pip install -r requirements.txt && alembic upgrade head
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    buildCommand: cd apps/api && pip install -r requirements.txt
+    startCommand: cd apps/api && uvicorn main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
       - key: PYTHON_VERSION
         value: "3.11.0"
       - key: XAI_API_KEY
-        sync: false          # set manually in Render dashboard
+        sync: false
       - key: DATABASE_URL
-        sync: false          # set manually in Render dashboard
+        sync: false
       - key: CORS_ORIGINS
-        sync: false          # set to your Netlify URL, e.g. https://aiwithabhi.netlify.app
+        sync: false
       - key: GROK_MODEL
-        value: grok-3        # update when grok-4 is available
+        value: llama-3.3-70b-versatile
     autoDeploy: true
