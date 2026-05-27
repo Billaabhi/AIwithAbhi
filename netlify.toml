@@ -1,0 +1,20 @@
+[build]
+  base    = "/"
+  command = "corepack enable && pnpm install && pnpm --filter=@aiwithabhi/types build && pnpm --filter=@aiwithabhi/web build"
+  publish = "apps/web/.next"
+
+[build.environment]
+  NODE_VERSION  = "20"
+  PNPM_VERSION  = "9.1.0"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# All /api/* calls are proxied to Render at runtime via NEXT_PUBLIC_API_URL
+# No rewrites needed — the frontend uses the env var directly.
+
+[context.production.environment]
+  NODE_ENV = "production"
+
+[context.deploy-preview.environment]
+  NODE_ENV = "production"
