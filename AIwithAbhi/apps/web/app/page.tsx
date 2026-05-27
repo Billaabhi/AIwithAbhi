@@ -1,13 +1,15 @@
 import Link from "next/link"
 import { ArrowRight, Zap, Shield, Search } from "lucide-react"
+import type { Skill } from "@aiwithabhi/types"
 import { skillApi } from "@/lib/api"
 import { VaultGrid } from "@/components/VaultGrid"
 
 export default async function HomePage() {
-  let recentSkills = []
+  let recentSkills: Skill[] = []
   try {
     const data = await skillApi.getVault(1, "recent")
-    recentSkills = data.skills.slice(0, 6)
+    recentSkills = data.skills as unknown as Skill[]
+    recentSkills = recentSkills.slice(0, 6)
   } catch {
     // API may not be running yet
   }
