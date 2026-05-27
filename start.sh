@@ -3,5 +3,5 @@ set -e
 
 echo "==> Starting AIwithAbhi API"
 
-cd AIwithAbhi/apps/api
+# We're already in AIwithAbhi/apps/api due to Root Directory setting
 uvicorn main:app --host 0.0.0.0 --port 8000
