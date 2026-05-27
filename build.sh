@@ -3,11 +3,11 @@ set -e
 
 echo "==> Building AIwithAbhi API"
 
-# Copy prompts directory into api folder so it's included in deployment
-cp -r packages/prompts AIwithAbhi/apps/api/prompts 2>/dev/null || true
+# We're already in AIwithAbhi/apps/api due to Root Directory setting
+# Copy prompts from ../../packages/prompts to ./prompts
+cp -r ../../../packages/prompts ./prompts 2>/dev/null || true
 
 # Install Python dependencies
-cd AIwithAbhi/apps/api
 pip install -r requirements.txt
 
 echo "==> Build complete"
