@@ -1,8 +1,21 @@
+import os
 from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-PROMPTS_DIR = Path(__file__).parent.parent.parent / "packages" / "prompts"
+# Try multiple paths to find prompts directory (handles different deployment contexts)
+def _get_prompts_dir() -> Path:
+    candidates = [
+        Path(__file__).parent / "prompts",  # If prompts copied to api/prompts (Render deployment)
+        Path(__file__).parent.parent.parent / "packages" / "prompts",  # Local dev
+    ]
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    # Return first candidate (local dev path) - will error with clear message if missing
+    return Path(__file__).parent / "prompts"
+
+PROMPTS_DIR = _get_prompts_dir()
 
 
 class Settings(BaseSettings):
