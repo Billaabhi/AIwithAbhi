@@ -1,7 +1,7 @@
 [build]
-  base    = "/"
-  command = "corepack enable && pnpm install && pnpm --filter=@aiwithabhi/types build && pnpm --filter=@aiwithabhi/web build"
-  publish = "apps/web/.next"
+  base    = "apps/web"
+  command = "cd ../.. && corepack enable && pnpm install && pnpm --filter=@aiwithabhi/types build && pnpm --filter=@aiwithabhi/web build"
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "20"
