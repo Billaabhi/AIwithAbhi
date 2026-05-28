@@ -1,1 +1,1 @@
-web: cd AIwithAbhi/apps/api && python3 -m pip install -r requirements.txt && python -m uvicorn main:app --host 0.0.0.0 --port $PORT
+web: cd AIwithAbhi/apps/api && chmod +x runtime-start.sh && ./runtime-start.sh
